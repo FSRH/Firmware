@@ -1,15 +1,17 @@
 
 px4_add_board(
 	PLATFORM nuttx
-	VENDOR px4
-	MODEL fmu-v5
+	#VENDOR px4
+	VENDOR fsrh
+	#MODEL fmu-v5
+	MODEL open-flight-controller-v05
 	LABEL default
 	TOOLCHAIN arm-none-eabi
 	ARCHITECTURE cortex-m7
 	ROMFSROOT px4fmu_common
-	IO px4_io-v2_default
+	#IO px4_io-v2_default
 	TESTING
-	UAVCAN_INTERFACES 2
+	UAVCAN_INTERFACES 1
 	SERIAL_PORTS
 		GPS1:/dev/ttyS0
 		TEL1:/dev/ttyS1
