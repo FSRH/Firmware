@@ -1,1 +1,6 @@
 Change board ID in firmware.prototype
+
+board.h:
+- remove SPI5 + SPI6
+- adjust other SPI + U(S)ART configs
+- add PWM/timers

@@ -1,13 +1,15 @@
 
 px4_add_board(
 	PLATFORM nuttx
-	VENDOR px4
-	MODEL fmu-v5
-	LABEL debug
+	#VENDOR px4
+	VENDOR fsrh
+	#MODEL fmu-v5
+	MODEL open-flight-controller-v05
+	LABEL default
 	TOOLCHAIN arm-none-eabi
 	ARCHITECTURE cortex-m7
 	ROMFSROOT px4fmu_common
-	IO px4_io-v2_default
+	#IO px4_io-v2_default
 	TESTING
 	#UAVCAN_INTERFACES 2
 	SERIAL_PORTS
@@ -50,7 +52,7 @@ px4_add_board(
 		pwm_input
 		pwm_out_sim
 		pwm_out
-		px4io
+#		px4io
 		rc_input
 		#roboclaw
 		rpm
