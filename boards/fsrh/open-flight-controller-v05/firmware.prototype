@@ -1,0 +1,13 @@
+{
+    "board_id": 50,
+    "magic": "OPFCv05",
+    "description": "Firmware for the OPFCv05 board",
+    "image": "",
+    "build_time": 0,
+    "summary": "OPFCv05",
+    "version": "0.5",
+    "image_size": 0,
+    "image_maxsize": 2064384,
+    "git_identity": "",
+    "board_revision": 0
+}
