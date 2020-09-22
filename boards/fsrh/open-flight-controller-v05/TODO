@@ -1,4 +1,12 @@
-Change board ID in firmware.prototype
+firmware.prototype: change board ID
+
+default.cmake: serial ports
+
+nuttx defconfig: Build Setup -> Debug Options -> Enable Debug Features (should this option be activated?)
+System Type -> STM32 Peripheral Support (difference between OTG FS and OTG FS/HS)
+System Type -> STM32 Peripheral Support (check if PWR should stay activated)
+System Type -> Timer Configuration (check the pwm mode)
+System Type -> Timer Configuration (should one timer be activated for an ADC)
 
 board.h:
 - remove SPI5 + SPI6
