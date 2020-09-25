@@ -16,6 +16,9 @@ nuttx defconfig:
 board.h:
 - maybe surround include "stm32_sdmmc.h by an if defined (e.g.: board.h Intelliflight-Eclipse project)
 - check HSE clock definition (should we also include the definition via an if else statement?)
+- check PLLSAI configuration
+- recalculate SDMMC dricers (clock configuration line 212 - 247
+- check if the timer frequencies are set in the board.h file otherwise copy from the other project
 
 - remove SPI5 + SPI6
 - adjust other SPI + U(S)ART configs

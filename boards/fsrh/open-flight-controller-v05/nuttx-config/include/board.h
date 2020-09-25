@@ -137,8 +137,6 @@
 #define STM32_RCC_DCKCFGR1_DFSDM1SRC   0
 #define STM32_RCC_DCKCFGR1_ADFSDM1SRC  0
 
-
-
 /* Configure factors for  PLLI2S clock */
 
 #define CONFIG_STM32F7_PLLI2S 1
