@@ -1,8 +1,8 @@
 /************************************************************************************
- * nuttx-configs/px4_fmu-v5/include/board.h
+ * nuttx-configs/fsrh_open-flight-controller-v05/include/board.h
  *
- *   Copyright (C) 2016-2018 Gregory Nutt. All rights reserved.
- *   Authors: David Sidrane <david_s5@nscdg.com>
+ *   Copyright (C) 2016-2020 Gregory Nutt. All rights reserved.
+ *   Authors: Stephan Rappenspeger <stephan.rappensperger@gmail.com>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -32,8 +32,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  ************************************************************************************/
-#ifndef __NUTTX_CONFIG_PX4_FMU_V5_INCLUDE_BOARD_H
-#define __NUTTX_CONFIG_PX4_FMU_V5_INCLUDE_BOARD_H
+#ifndef __NUTTX_CONFIG_FSRH_OPEN_FLIGHT_CONTROLLER_V05_INCLUDE_BOARD_H
+#define __NUTTX_CONFIG_FSRH_OPEN_FLIGHT_CONTROLLER_V05_INCLUDE_BOARD_H
 
 /************************************************************************************
  * Included Files
@@ -54,26 +54,29 @@
  ************************************************************************************/
 
 /* Clocking *************************************************************************/
-/* The px4_fmu-v5  board provides the following clock sources:
+/* The fsrh_open-flight-controller-v05 board provides the following clock sources:
  *
- *   X301: 16 MHz crystal for HSE
+ *   X2: 25 MHz oscillator for HSE
+ *	 X1: 32.768 KHz crystal for STM32F765VGT6 embedded RTC
  *
  * So we have these clock source available within the STM32
  *
  *   HSI: 16 MHz RC factory-trimmed
- *   HSE: 16 MHz crystal for HSE
+ *   LSI: 32 KHz RC
+ *   HSE: 25 MHz on-board oscillator
+ *   LSE: 32.768 kHz
  */
 
-#define STM32_BOARD_XTAL        16000000ul
+#define STM32_BOARD_XTAL        25000000ul
 
 #define STM32_HSI_FREQUENCY     16000000ul
 #define STM32_LSI_FREQUENCY     32000
 #define STM32_HSE_FREQUENCY     STM32_BOARD_XTAL
-#define STM32_LSE_FREQUENCY     0
+#define STM32_LSE_FREQUENCY     32768
 
 /* Main PLL Configuration.
  *
- * PLL source is HSE = 16,000,000
+ * PLL source is HSE = 25,000,000
  *
  * PLL_VCO = (STM32_HSE_FREQUENCY / PLLM) * PLLN
  * Subject to:
@@ -97,21 +100,23 @@
  * 2 <= PLLQ <= 15
  */
 
-/* Highest SYSCLK with USB OTG FS clock = 48 MHz
+/* USB OTG FS clock (= SDMMCCLK = RNGCLK) must be 48 MHz
  *
- * PLL_VCO = (16,000,000 / 8) * 216 = 432 MHz
+ * PLL_VCO = (25,000,000 / 25) * 432 = 432 MHz
  * SYSCLK  = 432 MHz / 2 = 216 MHz
- * USB OTG FS, SDMMC and RNG Clock = 432 MHz / 9 = 48 MHz
+ * USB OTG FS, SDMMC and RNG Clock = 432 MHz / 10 = 43.2 MHz
+ * DSI CLK = PLL_VCO / PLLR = 432 / 8 = 54 MHz
  */
 
-#define STM32_PLLCFG_PLLM       RCC_PLLCFG_PLLM(8)
-#define STM32_PLLCFG_PLLN       RCC_PLLCFG_PLLN(216)
+#define STM32_PLLCFG_PLLM       RCC_PLLCFG_PLLM(25)
+#define STM32_PLLCFG_PLLN       RCC_PLLCFG_PLLN(432)
 #define STM32_PLLCFG_PLLP       RCC_PLLCFG_PLLP_2
-#define STM32_PLLCFG_PLLQ       RCC_PLLCFG_PLLQ(9)
+#define STM32_PLLCFG_PLLQ       RCC_PLLCFG_PLLQ(10)
+#define STM32_PLLCFG_PLLR       RCC_PLLCFG_PLLR(8)
 
-#define STM32_VCO_FREQUENCY     ((STM32_HSE_FREQUENCY / 8) * 216)
+#define STM32_VCO_FREQUENCY     ((STM32_HSE_FREQUENCY / 25) * 432)
 #define STM32_SYSCLK_FREQUENCY  (STM32_VCO_FREQUENCY / 2)
-#define STM32_OTGFS_FREQUENCY   (STM32_VCO_FREQUENCY / 9)
+#define STM32_OTGFS_FREQUENCY   (STM32_VCO_FREQUENCY / 10)
 
 /* Configure factors for  PLLSAI clock */
 

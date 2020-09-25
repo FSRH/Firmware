@@ -1,14 +1,22 @@
-firmware.prototype: change board ID
+firmware.prototype:
+- change board ID
 
-default.cmake: serial ports
+default.cmake:
+- serial ports
 
-nuttx defconfig: Build Setup -> Debug Options -> Enable Debug Features (should this option be activated?)
-System Type -> STM32 Peripheral Support (difference between OTG FS and OTG FS/HS)
-System Type -> STM32 Peripheral Support (check if PWR should stay activated)
-System Type -> Timer Configuration (check the pwm mode)
-System Type -> Timer Configuration (should one timer be activated for an ADC)
+nuttx defconfig:
+- Build Setup -> Debug Options -> Enable Debug Features (should this option be activated?)
+- System Type -> STM32 Peripheral Support (difference between OTG FS and OTG FS/HS)
+- System Type -> STM32 Peripheral Support (check if PWR should stay activated)
+- System Type -> Timer Configuration (check the pwm mode)
+- System Type -> Timer Configuration (should one timer be activated for an ADC)
+- Board Selection -> Custom Board Configuration (Custom board name?)
+- Board Selection (Complete Board-Specific Options should all be changed mybe this depends on Select target board)
 
 board.h:
+- maybe surround include "stm32_sdmmc.h by an if defined (e.g.: board.h Intelliflight-Eclipse project)
+- check HSE clock definition (should we also include the definition via an if else statement?)
+
 - remove SPI5 + SPI6
 - adjust other SPI + U(S)ART configs
 - add PWM/timers
