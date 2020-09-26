@@ -111,3 +111,8 @@ CONFIG:
       buildType: MinSizeRel
       settings:
         CONFIG: nxp_fmuk66-v3_default
+    fsrh_open-flight-controller-v05_default:
+      short: fsrh_open-flight-controller-v05
+      buildType: MinSizeRel
+      settings:
+        CONFIG: fsrh_open-flight-controller-v05_default
