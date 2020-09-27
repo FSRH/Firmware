@@ -348,32 +348,23 @@
 #define GPIO_CAN2_TX	GPIO_CAN2_TX_2	/* PB6 */
 
 /* SPI
- * SPI1 sensors
- * SPI2 is FRAM.
- * SPI4 is BARO
- * SPI6 Reserved
  *
+ * SPI1 Acceleration sensor (ICM-20689-V2.2)
+ * SPI2 Systembus external sensors
+ * SPI4 Barometer and magnetormeter (AK8963 / BMP280)
  */
 
-#define GPIO_SPI1_MISO   GPIO_SPI1_MISO_1   /* PA6 */
-#define GPIO_SPI1_MOSI   GPIO_SPI1_MOSI_3   /* PD7 */
-#define GPIO_SPI1_SCK    GPIO_SPI1_SCK_3    /* PG11 */
+#define GPIO_SPI1_MISO	GPIO_SPI1_MISO_1	/* PA6 */
+#define GPIO_SPI1_MOSI	GPIO_SPI1_MOSI_1	/* PA7 */
+#define GPIO_SPI1_SCK	GPIO_SPI1_SCK_1		/* PA5 */
 
-#define GPIO_SPI2_MISO   GPIO_SPI2_MISO_3   /* PI2 */
-#define GPIO_SPI2_MOSI   GPIO_SPI2_MOSI_3   /* PI3 */
-#define GPIO_SPI2_SCK    GPIO_SPI2_SCK_5    /* PI1 */
+#define GPIO_SPI2_MISO	GPIO_SPI2_MISO_1	/* PB14 */
+#define GPIO_SPI2_MOSI	GPIO_SPI2_MOSI_1	/* PB15 */
+#define GPIO_SPI2_SCK	GPIO_SPI2_SCK_4		/* PD3 */
 
-#define GPIO_SPI4_MISO   GPIO_SPI4_MISO_2   /* PE13 */
-#define GPIO_SPI4_MOSI   GPIO_SPI4_MOSI_1   /* PE6 */
-#define GPIO_SPI4_SCK    GPIO_SPI4_SCK_1    /* PE2 */
-
-#define GPIO_SPI5_MISO   GPIO_SPI5_MISO_1   /* PF8 */
-#define GPIO_SPI5_MOSI   GPIO_SPI5_MOSI_1   /* PF9 */
-#define GPIO_SPI5_SCK    GPIO_SPI5_SCK_1    /* PF7 */
-
-#define GPIO_SPI6_MISO   GPIO_SPI6_MISO_1   /* PG12 */
-#define GPIO_SPI6_MOSI   GPIO_SPI6_MOSI_3   /* PB5 */
-#define GPIO_SPI6_SCK    GPIO_SPI6_SCK_1    /* PG13 */
+#define GPIO_SPI4_MISO	GPIO_SPI4_MISO_1	/* PE5 */
+#define GPIO_SPI4_MOSI	GPIO_SPI4_MOSI_1	/* PE6 */
+#define GPIO_SPI4_SCK	GPIO_SPI4_SCK_1		/* PE2 */
 
 /* I2C
  *
