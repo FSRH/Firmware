@@ -337,16 +337,15 @@
 
 /* CAN
  *
- * CAN1 is routed to transceiver.
- * CAN2 is routed to transceiver.
- * CAN3 is routed to transceiver.
+ * CAN1 is not routed to transceiver.
+ * CAN2 is not routed to transceiver.
  */
-#define GPIO_CAN1_RX     GPIO_CAN1_RX_5     /* PI9  */
-#define GPIO_CAN1_TX     GPIO_CAN1_TX_4     /* PH13 */
-#define GPIO_CAN2_RX     GPIO_CAN2_RX_1     /* PB12 */
-#define GPIO_CAN2_TX     GPIO_CAN2_TX_1     /* PB13 */
-#define GPIO_CAN3_RX     GPIO_CAN3_RX_1     /* PA8  */
-#define GPIO_CAN3_TX     GPIO_CAN3_TX_1     /* PA15 */
+
+#define GPIO_CAN1_RX	GPIO_CAN1_RX_2	/* PB8  */
+#define GPIO_CAN1_TX    GPIO_CAN1_TX_2	/* PB9 */
+
+#define GPIO_CAN2_RX	GPIO_CAN2_RX_2	/* PB5 */
+#define GPIO_CAN2_TX	GPIO_CAN2_TX_2	/* PB6 */
 
 /* SPI
  * SPI1 sensors
