@@ -20,6 +20,7 @@ board.h:
 - recalculate SDMMC dricers (clock configuration line 212 - 247
 - check if the timer frequencies are set in the board.h file otherwise copy from the other project
 - check if all uarts should also be defined as I2C like in the fmu-v5
+- check ff usb and sdmmc is defined somewhere else
 
 - remove SPI5 + SPI6
 - adjust other SPI + U(S)ART configs
