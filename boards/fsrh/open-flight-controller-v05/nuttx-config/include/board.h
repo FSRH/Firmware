@@ -378,61 +378,35 @@
  *
  *      VDD 3.3
  *      GND
- *      SDMMC1_CK                           PC12
- *      SDMMC1_CMD                          PD2
- *      SDMMC1_D0                           PC8
- *      SDMMC1_D1                           PC9
- *      SDMMC1_D2                           PC10
- *      SDMMC1_D3                           PC11
- *      GPIO_SDMMC1_NCD                     PG0
+ *      SDMMC1_CK		PC12
+ *      SDMMC1_CMD		PD2
+ *      SDMMC1_D0		PC8
+ *      SDMMC1_D1		PC9
+ *      SDMMC1_D2		PC10
+ *      SDMMC1_D3		PC11
+ *      GPIO_SDMMC1_NCD1	PD0
+ * 	GPIO_SDMMC1_NCD2	PD1
  */
+
+// #define GPIO_SDMMC1_CK	GPIO_SDMMC1_CK	/* PC12 */
+// #define GPIO_SDMMC1_CMD	GPIO_SDMMC1_CMD	/* PD2 */
+// #define GPIO_SDMMC1_D0	GPIO_SDMMC1_D0	/* PC8 */
+// #define GPIO_SDMMC1_D1	GPIO_SDMMC1_D1	/* PC9 */
+// #define GPIO_SDMMC1_D2	GPIO_SDMMC1_D2	/* PC10 */
+// #define GPIO_SDMMC1_D3	GPIO_SDMMC1_D3	/* PC11 */
+// #define GPIO_SDMMC1_NCD1		/* PD0 */
+// #define GPIO_SDMMC1_NCD2		/* PD1 */
 
 /* USB
  *
- *      OTG_FS_DM                           PA11
- *      OTG_FS_DP                           PA12
- *      VBUS                                PA9
+ *	OTG_FS_DM		PA11
+ *      OTG_FS_DP		PA12
+ *	OTG_FS_ID		PA10
+ *      VBUS			PA9
  */
 
+// #define OTG_FS_DM	GPIO_OTGFS_DM	/* PA11 */
+// #define OTG_FS_DP	GPIO_OTGFS_DP	/* PA12 */
+// #define OTG_FS_ID	GPIO_OTGFS_ID	/* PA10 */
 
-/* Board provides GPIO or other Hardware for signaling to timing analyzer */
-
-#if defined(CONFIG_BOARD_USE_PROBES)
-# include "stm32_gpio.h"
-# define PROBE_N(n) (1<<((n)-1))
-# define PROBE_1    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN14)  /* PE14 AUX1 */
-# define PROBE_2    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTA|GPIO_PIN10)  /* PA10 AUX2 */
-# define PROBE_3    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN11)  /* PE11 AUX3 */
-# define PROBE_4    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN9)   /* PE9  AUX4 */
-# define PROBE_5    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTD|GPIO_PIN13)  /* PD13 AUX5 */
-# define PROBE_6    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTD|GPIO_PIN14)  /* PD14 AUX6 */
-# define PROBE_7    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN6)   /* PH6  AUX7 */
-# define PROBE_8    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN9)   /* PH9  AUX8 */
-# define PROBE_9    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTA|GPIO_PIN5)   /* PA5  CAP1 */
-# define PROBE_10   (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTB|GPIO_PIN3)   /* PB3  CAP2 */
-# define PROBE_11   (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTB|GPIO_PIN11)  /* PB11 CAP3 */
-
-# define PROBE_INIT(mask) \
-	do { \
-		if ((mask)& PROBE_N(1)) { stm32_configgpio(PROBE_1); } \
-		if ((mask)& PROBE_N(2)) { stm32_configgpio(PROBE_2); } \
-		if ((mask)& PROBE_N(3)) { stm32_configgpio(PROBE_3); } \
-		if ((mask)& PROBE_N(4)) { stm32_configgpio(PROBE_4); } \
-		if ((mask)& PROBE_N(5)) { stm32_configgpio(PROBE_5); } \
-		if ((mask)& PROBE_N(6)) { stm32_configgpio(PROBE_6); } \
-		if ((mask)& PROBE_N(7)) { stm32_configgpio(PROBE_7); } \
-		if ((mask)& PROBE_N(8)) { stm32_configgpio(PROBE_8); } \
-		if ((mask)& PROBE_N(9)) { stm32_configgpio(PROBE_9); } \
-		if ((mask)& PROBE_N(10)) { stm32_configgpio(PROBE_10); } \
-		if ((mask)& PROBE_N(11)) { stm32_configgpio(PROBE_11); } \
-	} while(0)
-
-# define PROBE(n,s)  do {stm32_gpiowrite(PROBE_##n,(s));}while(0)
-# define PROBE_MARK(n) PROBE(n,false);PROBE(n,true)
-#else
-# define PROBE_INIT(mask)
-# define PROBE(n,s)
-# define PROBE_MARK(n)
-#endif
-
-#endif  /*__NUTTX_CONFIG_PX4_FMU_V5_INCLUDE_BOARD_H  */
+#endif  /* __NUTTX_CONFIG_FSRH_OPEN_FLIGHT_CONTROLLER_V05_INCLUDE_BOARD_H */
