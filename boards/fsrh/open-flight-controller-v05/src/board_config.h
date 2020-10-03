@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- *   Copyright (c) 2016 PX4 Development Team. All rights reserved.
+ *   Copyright (c) 2020 FSRH Development Team. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -34,7 +34,7 @@
 /**
  * @file board_config.h
  *
- * PX4FMU-v5 internal definitions
+ * FSRHOPFC-v0.5 internal definitions
  */
 
 #pragma once

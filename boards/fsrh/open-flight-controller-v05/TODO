@@ -15,13 +15,10 @@ nuttx defconfig:
 
 board.h:
 - maybe surround include "stm32_sdmmc.h by an if defined (e.g.: board.h Intelliflight-Eclipse project)
-- check HSE clock definition (should we also include the definition via an if else statement?)
-- check PLLSAI configuration
-- recalculate SDMMC dricers (clock configuration line 212 - 247
-- check if the timer frequencies are set in the board.h file otherwise copy from the other project
+- RCC_PLLCFG_PLLQ(10) => USB = 43.2 MHz could be to low
 - check if all uarts should also be defined as I2C like in the fmu-v5
 - check ff usb and sdmmc is defined somewhere else
 
-- remove SPI5 + SPI6
-- adjust other SPI + U(S)ART configs
-- add PWM/timers
+src/board_config.h:
+- check included files
+
