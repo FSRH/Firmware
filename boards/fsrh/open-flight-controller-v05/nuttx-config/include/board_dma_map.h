@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- *   Copyright (c) 2020 PX4 Development Team. All rights reserved.
+ *   Copyright (c) 2020 FSRH Development Team. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -12,7 +12,7 @@
  *    notice, this list of conditions and the following disclaimer in
  *    the documentation and/or other materials provided with the
  *    distribution.
- * 3. Neither the name PX4 nor the names of its contributors may be
+ * 3. Neither the name FSRH nor the names of its contributors may be
  *    used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -79,21 +79,21 @@
 
 // DMA1 Channel/Stream Selections
 //--------------------------------------------//---------------------------//----------------
-//      DMAMAP_UART8_TX                       // DMA1, Stream 0, Channel 5    (PX4IO TX)
-//      DMAMAP_USART3_RX                      // DMA1, Stream 1, Channel 4    (TELEM2 RX)
-//      DMAMAP_UART4_RX                       // DMA1, Stream 2, Channel 4    (TELEM4 RX)
-#define DMAMAP_USART3_TX  DMAMAP_USART3_TX_1  // DMA1, Stream 3, Channel 4    (TELEM2 TX)
-//      DMAMAP_USART2_RX                      // DMA1, Stream 5, Channel 4    (TELEM1 RX)
-//      DMAMAP_UART8_RX                       // DMA1, Stream 6, Channel 5    (PX4IO RX)
-
+//      AVAILABLE                             // DMA1, Stream 0
+//      AVAILABLE                             // DMA1, Stream 1
+//      AVAILABLE                             // DMA1, Stream 2
+//      AVAILABLE      	                      // DMA1, Stream 3
+//      AVAILABLE                             // DMA1, Stream 5
+//      AVAILABLE                             // DMA1, Stream 6
+//      AVAILABLE                             // DMA1, Stream 7
 
 //  DMA2 Channel/Stream Selections
 //--------------------------------------------//---------------------------//----------------
-#define DMAMAP_SPI1_RX    DMAMAP_SPI1_RX_1    // DMA2, Stream 0, Channel 3    (SPI sensors RX)
-//      AVAILABLE                             // DMA2, Stream 1
-#define DMAMAP_USART6_RX  DMAMAP_USART6_RX_2  // DMA2, Stream 2, Channel 5
-#define DMAMAP_SPI1_TX    DMAMAP_SPI1_TX_1    // DMA2, Stream 3, Channel 3    (SPI sensors TX)
+#define DMAMAP_SPI4_RX    DMAMAP_SPI4_RX_1    // DMA2, Stream 0, Channel 4    (SPI4 sensors RX)
+#define DMAMAP_SPI4_TX    DMAMAP_SPI4_TX_1    // DMA2, Stream 1, Channel 4    (SPI4 sensors TX)
+#define DMAMAP_SPI1_RX    DMAMAP_SPI1_RX_2    // DMA2, Stream 2, Channel 3    (SPI1 sensors RX)
+#define DMAMAP_SDMMC1     DMAMAP_SDMMC1_1     // DMA2, Stream 3, Channel 4    (SD-card)
 //      AVAILABLE                             // DMA2, Stream 4
-//      DMAMAP_TIM1_UP                        // DMA2, Stream 5, Channel 6    (DSHOT)
-#define DMAMAP_SDMMC1     DMAMAP_SDMMC1_2     // DMA2, Stream 6, Channel 4
-#define DMAMAP_USART6_TX  DMAMAP_USART6_TX_2  // DMA2, Stream 7, Channel 5
+#define DMAMAP_SPI1_TX    DMAMAP_SPI1_TX_2    // DMA2, Stream 5, Channel 3    (SPI1 sensors TX)
+//      AVAILABLE                             // DMA2, Stream 6
+//      AVAILABLE                             // DMA2, Stream 7
