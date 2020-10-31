@@ -53,24 +53,24 @@
  * Definitions
  ****************************************************************************************************/
 
-/* PX4IO connection configuration */
-
-#define BOARD_USES_PX4IO_VERSION       2
-#define PX4IO_SERIAL_DEVICE            "/dev/ttyS6"
-#define PX4IO_SERIAL_TX_GPIO           GPIO_UART8_TX
-#define PX4IO_SERIAL_RX_GPIO           GPIO_UART8_RX
-#define PX4IO_SERIAL_BASE              STM32_UART8_BASE
-#define PX4IO_SERIAL_VECTOR            STM32_IRQ_UART8
-#define PX4IO_SERIAL_TX_DMAMAP         DMAMAP_UART8_TX
-#define PX4IO_SERIAL_RX_DMAMAP         DMAMAP_UART8_RX
-#define PX4IO_SERIAL_RCC_REG           STM32_RCC_APB1ENR
-#define PX4IO_SERIAL_RCC_EN            RCC_APB1ENR_UART8EN
-#define PX4IO_SERIAL_CLOCK             STM32_PCLK1_FREQUENCY
-#define PX4IO_SERIAL_BITRATE           1500000               /* 1.5Mbps -> max rate for IO */
+///* PX4IO connection configuration */
+//
+//#define BOARD_USES_PX4IO_VERSION       2
+//#define PX4IO_SERIAL_DEVICE            "/dev/ttyS6"
+//#define PX4IO_SERIAL_TX_GPIO           GPIO_UART8_TX
+//#define PX4IO_SERIAL_RX_GPIO           GPIO_UART8_RX
+//#define PX4IO_SERIAL_BASE              STM32_UART8_BASE
+//#define PX4IO_SERIAL_VECTOR            STM32_IRQ_UART8
+//#define PX4IO_SERIAL_TX_DMAMAP         DMAMAP_UART8_TX
+//#define PX4IO_SERIAL_RX_DMAMAP         DMAMAP_UART8_RX
+//#define PX4IO_SERIAL_RCC_REG           STM32_RCC_APB1ENR
+//#define PX4IO_SERIAL_RCC_EN            RCC_APB1ENR_UART8EN
+//#define PX4IO_SERIAL_CLOCK             STM32_PCLK1_FREQUENCY
+//#define PX4IO_SERIAL_BITRATE           1500000               /* 1.5Mbps -> max rate for IO */
 
 /* Configuration ************************************************************************************/
 
-#define BOARD_HAS_LTC4417
+//#define BOARD_HAS_LTC4417
 
 #if defined(BOARD_HAS_LTC4417)
 #  define BOARD_HAS_LTC44XX_VALIDS      2 // No LTC or N Bricks
@@ -88,9 +88,9 @@
 
 /* LEDs are driven with push open drain to support Anode to 5V or 3.3V */
 
-#define GPIO_nLED_RED        /* PB1 */  (GPIO_OUTPUT|GPIO_OPENDRAIN|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTB|GPIO_PIN1)
-#define GPIO_nLED_GREEN      /* PC6 */  (GPIO_OUTPUT|GPIO_OPENDRAIN|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTC|GPIO_PIN6)
-#define GPIO_nLED_BLUE       /* PC7 */  (GPIO_OUTPUT|GPIO_OPENDRAIN|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTC|GPIO_PIN7)
+#define GPIO_nLED_RED        /* PB1 */  (GPIO_OUTPUT|GPIO_OPENDRAIN|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTE|GPIO_PIN13)
+#define GPIO_nLED_GREEN      /* PC6 */  (GPIO_OUTPUT|GPIO_OPENDRAIN|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTE|GPIO_PIN14)
+#define GPIO_nLED_BLUE       /* PC7 */  (GPIO_OUTPUT|GPIO_OPENDRAIN|GPIO_SPEED_50MHz|GPIO_OUTPUT_SET|GPIO_PORTB|GPIO_PIN7)
 
 #define BOARD_HAS_CONTROL_STATUS_LEDS      1
 #define BOARD_OVERLOAD_LED     LED_RED
@@ -244,7 +244,6 @@
 #define BOARD_LED_PWM_DRIVE_ACTIVE_LOW 1
 
 #define BOARD_HAS_UI_LED_PWM            1
-
 #define BOARD_UI_LED_PWM_DRIVE_ACTIVE_LOW 1
 
 
