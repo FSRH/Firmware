@@ -165,7 +165,6 @@
 #define STM32_RCC_DCKCFGR2_SDMMC2SRC  RCC_DCKCFGR2_SDMMC2SEL_48MHZ
 #define STM32_RCC_DCKCFGR2_DSISRC     RCC_DCKCFGR2_DSISEL_PHY
 
-
 /* Several prescalers allow the configuration of the two AHB buses, the
  * high-speed APB (APB2) and the low-speed APB (APB1) domains. The maximum
  * frequency of the two AHB buses is 216 MHz while the maximum frequency of
@@ -239,7 +238,6 @@
  * DMA OFF: SDMMCCLK=48MHz, SDMMC_CK=SDMMCCLK/(2+2)=12 MHz
  */
 //TODO #warning "Check Freq for 24mHz"
-
 #ifdef CONFIG_STM32F7_SDMMC_DMA
 #  define STM32_SDMMC_SDXFR_CLKDIV      (1 << STM32_SDMMC_CLKCR_CLKDIV_SHIFT)
 #else
@@ -328,8 +326,8 @@
 #define GPIO_UART7_RX	GPIO_UART7_RX_1	/* PE7 */
 #define GPIO_UART7_TX	GPIO_UART7_TX_1	/* PE8 */
 
-#define GPIO_UART8_RX	GPIO_UART8_RX	/* PE0 */
-#define GPIO_UART8_TX	GPIO_UART8_TX	/* PE1 */
+// #define GPIO_UART8_RX	GPIO_UART8_RX	/* PE0 */
+// #define GPIO_UART8_TX	GPIO_UART8_TX	/* PE1 */
 
 /* CAN
  *
@@ -392,7 +390,6 @@
 // #define GPIO_SDMMC1_D3	GPIO_SDMMC1_D3	/* PC11 */
 // #define GPIO_SDMMC1_NCD1		/* PD0 */
 // #define GPIO_SDMMC1_NCD2		/* PD1 */
-
 /* USB
  *
  *	OTG_FS_DM		PA11
@@ -404,5 +401,4 @@
 // #define OTG_FS_DM	GPIO_OTGFS_DM	/* PA11 */
 // #define OTG_FS_DP	GPIO_OTGFS_DP	/* PA12 */
 // #define OTG_FS_ID	GPIO_OTGFS_ID	/* PA10 */
-
 #endif  /* __NUTTX_CONFIG_FSRH_OPEN_FLIGHT_CONTROLLER_V05_INCLUDE_BOARD_H */
