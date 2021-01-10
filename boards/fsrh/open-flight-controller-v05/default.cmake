@@ -35,6 +35,7 @@ px4_add_board(
 		imu/bosch/bmi055
 		imu/invensense/icm20602
 		imu/invensense/icm20689
+		#imu/invensense/icm20948 # enable this when updating board to latest IMU chip
 		#imu/mpu6000 # legacy icm20602/icm20689 driver
 		irlock
 		lights/blinkm
