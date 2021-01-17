@@ -49,23 +49,23 @@ px4_add_board(
 		pca9685
 		power_monitor/ina226
 		#protocol_splitter
-		pwm_input
+		#pwm_input
 		pwm_out_sim
 		pwm_out
 #		px4io
 		rc_input
 		roboclaw
 		rpm
-		safety_button
+		#safety_button
 		tap_esc
 		telemetry # all available telemetry drivers
 		test_ppm
-		tone_alarm
+#		tone_alarm
 		uavcan
 	MODULES
 		airspeed_selector
 		attitude_estimator_q
-		battery_status
+		#battery_status
 		camera_feedback
 		commander
 		dataman

@@ -165,11 +165,7 @@
 	 (1 << ADC1_SPARE_2_CHANNEL)               | \
 	 (1 << ADC1_SPARE_3_CHANNEL))
 #endif
-//	 (1 << ADC_RSSI_IN_CHANNEL)                | \
-//	 (1 << ADC_SCALED_V5_CHANNEL)              | \
-//	 (1 << ADC_SCALED_VDD_3V3_SENSORS_CHANNEL) | \
-//	 (1 << ADC_HW_VER_SENSE_CHANNEL)           | \
-//	 (1 << ADC_HW_REV_SENSE_CHANNEL)           | \
+
 
 /* Define Battery 1 Voltage Divider and A per V
  */
@@ -181,17 +177,18 @@
 
 #define BOARD_ADC_OPEN_CIRCUIT_V     (5.6f)
 
-///* HW Version and Revision drive signals Default to 1 to detect */
-//
+/* HW Version and Revision drive signals Default to 1 to detect */
+
 //#define BOARD_HAS_HW_VERSIONING
+#define BOARD_HAS_VERSIONING
 //
 //#define GPIO_HW_REV_DRIVE    /* PH14  */ (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_SET|GPIO_PORTH|GPIO_PIN14)
 //#define GPIO_HW_REV_SENSE    /* PC3   */ ADC1_GPIO(13)
 //#define GPIO_HW_VER_DRIVE    /* PG0   */ (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_SET|GPIO_PORTG|GPIO_PIN0)
 //#define GPIO_HW_VER_SENSE    /* PC2   */ ADC1_GPIO(12)
-//#define HW_INFO_INIT         {'V','5','x', 'x',0}
-//#define HW_INFO_INIT_VER     2
-//#define HW_INFO_INIT_REV     3
+#define HW_INFO_INIT         {'V','5','x', 'x',0}
+#define HW_INFO_INIT_VER     2
+#define HW_INFO_INIT_REV     3
 
 /* CAN Silence
  *
@@ -233,16 +230,15 @@
 
 //#define BOARD_INDICATE_ARMED_STATE(on_armed)  px4_arch_configgpio((on_armed) ? GPIO_nARMED : GPIO_nARMED_INIT)
 
-/* PWM
- */
-#define DIRECT_PWM_OUTPUT_CHANNELS  7
-#define DIRECT_INPUT_TIMER_CHANNELS  7
+/* PWM */
+#define DIRECT_PWM_OUTPUT_CHANNELS  8
+#define DIRECT_INPUT_TIMER_CHANNELS  0
 
 #define BOARD_HAS_LED_PWM              1
 #define BOARD_LED_PWM_DRIVE_ACTIVE_LOW 1
 
-#define BOARD_HAS_UI_LED_PWM            1
-#define BOARD_UI_LED_PWM_DRIVE_ACTIVE_LOW 1
+//#define BOARD_HAS_UI_LED_PWM            0
+//#define BOARD_UI_LED_PWM_DRIVE_ACTIVE_LOW 1
 
 
 /* Power supply control and monitoring GPIOs */
@@ -270,7 +266,7 @@
 
 //#define VDD_5V_PERIPH_EN(on_true)          px4_arch_gpiowrite(GPIO_nVDD_5V_PERIPH_EN, !(on_true))
 //#define VDD_5V_HIPOWER_EN(on_true)         px4_arch_gpiowrite(GPIO_nVDD_5V_HIPOWER_EN, !(on_true))
-//#define VDD_3V3_SPEKTRUM_POWER_EN(on_true) px4_arch_gpiowrite(GPIO_VDD_3V3_SPEKTRUM_POWER_EN, (on_true))
+#define VDD_3V3_SPEKTRUM_POWER_EN(on_true) px4_arch_gpiowrite(GPIO_VDD_3V3_SPEKTRUM_POWER_EN, (on_true))
 #define READ_VDD_3V3_SPEKTRUM_POWER_EN()   px4_arch_gpioread(GPIO_VDD_3V3_SPEKTRUM_POWER_EN)
 //#define VDD_5V_RC_EN(on_true)              px4_arch_gpiowrite(GPIO_VDD_5V_RC_EN, (on_true))
 //#define VDD_5V_WIFI_EN(on_true)            px4_arch_gpiowrite(GPIO_VDD_5V_WIFI_EN, (on_true))
@@ -357,8 +353,8 @@
  * and can drive  GPIO PPM_IN as an output
  */
 
-//#define GPIO_PPM_IN_AS_OUT             (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_SET|GPIO_PORTI|GPIO_PIN5)
-//#define SPEKTRUM_RX_AS_GPIO_OUTPUT()   px4_arch_configgpio(GPIO_PPM_IN_AS_OUT)
+#define GPIO_PPM_IN_AS_OUT             (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_SET|GPIO_PORTA|GPIO_PIN1)
+#define SPEKTRUM_RX_AS_GPIO_OUTPUT()   px4_arch_configgpio(GPIO_PPM_IN_AS_OUT)
 #define SPEKTRUM_RX_AS_UART()          /* Can be left as uart */
 #define SPEKTRUM_OUT(_one_true)        px4_arch_gpiowrite(GPIO_PPM_IN_AS_OUT, (_one_true))
 
@@ -402,7 +398,7 @@
 #elif BOARD_HAS_LTC44XX_VALIDS == 2
 #  define BOARD_ADC_BRICK1_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK1_VALID))
 #  define BOARD_ADC_BRICK2_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK2_VALID))
-#elif BOARD_HAS_LTC44XX_VALIDS == 3
+#elif BOARD_HAS__VALIDS == 3
 #  define BOARD_ADC_BRICK1_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK1_VALID))
 #  define BOARD_ADC_BRICK2_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK2_VALID))
 #  define BOARD_ADC_BRICK3_VALID  (!px4_arch_gpioread(GPIO_nVDD_BRICK3_VALID))
@@ -415,8 +411,8 @@
 #  error Unsupported BOARD_HAS_LTC44XX_VALIDS value
 #endif
 
-#define BOARD_ADC_PERIPH_5V_OC  (!px4_arch_gpioread(GPIO_nVDD_5V_PERIPH_OC))
-#define BOARD_ADC_HIPOWER_5V_OC (!px4_arch_gpioread(GPIO_nVDD_5V_HIPOWER_OC))
+//#define BOARD_ADC_PERIPH_5V_OC  (!px4_arch_gpioread(GPIO_nVDD_5V_PERIPH_OC))
+//#define BOARD_ADC_HIPOWER_5V_OC (!px4_arch_gpioread(GPIO_nVDD_5V_HIPOWER_OC))
 
 #define BOARD_HAS_PWM  DIRECT_PWM_OUTPUT_CHANNELS
 
@@ -429,29 +425,11 @@
 
 #define PX4_GPIO_INIT_LIST { \
 		PX4_ADC_GPIO,                     \
-		GPIO_HW_REV_DRIVE,                \
-		GPIO_HW_VER_DRIVE,                \
 		GPIO_CAN1_TX,                     \
 		GPIO_CAN1_RX,                     \
 		GPIO_CAN2_TX,                     \
 		GPIO_CAN2_RX,                     \
-		GPIO_HEATER_OUTPUT,               \
-		GPIO_nPOWER_IN_A,                 \
-		GPIO_nPOWER_IN_B,                 \
-		GPIO_nPOWER_IN_C,                 \
-		GPIO_nVDD_5V_PERIPH_EN,           \
-		GPIO_nVDD_5V_PERIPH_OC,           \
-		GPIO_nVDD_5V_HIPOWER_EN,          \
-		GPIO_nVDD_5V_HIPOWER_OC,          \
 		GPIO_VDD_3V3_SPEKTRUM_POWER_EN,   \
-		GPIO_VDD_5V_RC_EN,                \
-		GPIO_VDD_5V_WIFI_EN,              \
-		GPIO_VDD_3V3_SD_CARD_EN,          \
-		GPIO_TONE_ALARM_IDLE,             \
-		GPIO_RSSI_IN_INIT,                \
-		GPIO_nSAFETY_SWITCH_LED_OUT_INIT, \
-		GPIO_SAFETY_SWITCH_IN,            \
-		GPIO_nARMED_INIT                  \
 	}
 
 		/*
@@ -463,7 +441,11 @@
 
 #define BOARD_NUM_IO_TIMERS 4
 
-#define BOARD_DSHOT_MOTOR_ASSIGNMENT {3, 2, 1, 0, 4, 5, 6, 7};
+// Map PWM channels to DShot motor number
+#define BOARD_DSHOT_MOTOR_ASSIGNMENT {5, 4, 2, 1, 0, 7, 6, 3};
+
+// We only defined three SPI buses in spi.cpp
+#define BOARD_SPI_BUS_MAX_BUS_ITEMS 3
 
 __BEGIN_DECLS
 

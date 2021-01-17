@@ -37,22 +37,18 @@ constexpr io_timers_t io_timers[MAX_IO_TIMERS] = {
 	initIOTimer(Timer::Timer1),
 	initIOTimer(Timer::Timer2),
 	initIOTimer(Timer::Timer3),
-	initIOTimer(Timer::Timer4),
 };
 
 
 constexpr timer_io_channels_t timer_io_channels[MAX_TIMER_IO_CHANNELS] = {
-	initIOTimerChannel(io_timers, {Timer::Timer1, Timer::Channel1}, {GPIO::PortE, GPIO::Pin9}),
-	initIOTimerChannel(io_timers, {Timer::Timer1, Timer::Channel2}, {GPIO::PortE, GPIO::Pin11}),
-	initIOTimerChannel(io_timers, {Timer::Timer1, Timer::Channel3}, {GPIO::PortE, GPIO::Pin13}),
-	initIOTimerChannel(io_timers, {Timer::Timer1, Timer::Channel4}, {GPIO::PortE, GPIO::Pin14}),
-	initIOTimerChannel(io_timers, {Timer::Timer2, Timer::Channel3}, {GPIO::PortB, GPIO::Pin10}),
-	initIOTimerChannel(io_timers, {Timer::Timer2, Timer::Channel4}, {GPIO::PortB, GPIO::Pin12}),
-	initIOTimerChannel(io_timers, {Timer::Timer3, Timer::Channel3}, {GPIO::PortB, GPIO::Pin0}),
-	initIOTimerChannel(io_timers, {Timer::Timer3, Timer::Channel4}, {GPIO::PortB, GPIO::Pin1}),
-	initIOTimerChannel(io_timers, {Timer::Timer4, Timer::Channel2}, {GPIO::PortB, GPIO::Pin7}),
-	initIOTimerChannel(io_timers, {Timer::Timer4, Timer::Channel3}, {GPIO::PortD, GPIO::Pin14}),
-	initIOTimerChannel(io_timers, {Timer::Timer4, Timer::Channel4}, {GPIO::PortD, GPIO::Pin15}),
+	initIOTimerChannel(io_timers, {Timer::Timer1, Timer::Channel1}, {GPIO::PortE, GPIO::Pin9}),  // 0: PWM4
+	initIOTimerChannel(io_timers, {Timer::Timer1, Timer::Channel2}, {GPIO::PortE, GPIO::Pin11}), // 1: PWM3
+	initIOTimerChannel(io_timers, {Timer::Timer1, Timer::Channel3}, {GPIO::PortE, GPIO::Pin13}), // 2: PWM2
+	initIOTimerChannel(io_timers, {Timer::Timer1, Timer::Channel4}, {GPIO::PortE, GPIO::Pin14}), // 3: PWM7, LED3
+	initIOTimerChannel(io_timers, {Timer::Timer2, Timer::Channel3}, {GPIO::PortB, GPIO::Pin10}), // 4: PWM1
+	initIOTimerChannel(io_timers, {Timer::Timer2, Timer::Channel4}, {GPIO::PortB, GPIO::Pin11}), // 5: PWM0
+	initIOTimerChannel(io_timers, {Timer::Timer3, Timer::Channel3}, {GPIO::PortB, GPIO::Pin0}),  // 6: PWM6
+	initIOTimerChannel(io_timers, {Timer::Timer3, Timer::Channel4}, {GPIO::PortB, GPIO::Pin1}),  // 7: PWM5
 };
 
 constexpr io_timers_channel_mapping_t io_timers_channel_mapping =
@@ -60,11 +56,11 @@ constexpr io_timers_channel_mapping_t io_timers_channel_mapping =
 
 #if defined(BOARD_HAS_LED_PWM) || defined(BOARD_HAS_UI_LED_PWM)
 constexpr io_timers_t led_pwm_timers[MAX_LED_TIMERS] = {
-#  if defined(BOARD_HAS_UI_LED_PWM)
-	initIOTimer(Timer::Timer5),
-#  endif
+//#  if defined(BOARD_HAS_UI_LED_PWM)
+//	initIOTimer(Timer::Timer5),
+//#  endif
 #  if defined(BOARD_HAS_LED_PWM) && !defined(BOARD_HAS_CONTROL_STATUS_LEDS)
-	initIOTimer(Timer::Timer3),
+	initIOTimer(Timer::Timer4),
 #  endif
 };
 
@@ -115,21 +111,21 @@ static inline constexpr timer_io_channels_t initIOTimerChannelControlLED(const i
 }
 
 constexpr timer_io_channels_t led_pwm_channels[MAX_TIMER_LED_CHANNELS] = {
-#  if defined(BOARD_HAS_UI_LED_PWM)
-#    if defined(BOARD_UI_LED_SWAP_RG)
-	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer5, Timer::Channel2}, {GPIO::PortH, GPIO::Pin11}, 2),
-	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer5, Timer::Channel1}, {GPIO::PortH, GPIO::Pin10}, 1),
-	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer5, Timer::Channel3}, {GPIO::PortH, GPIO::Pin12}, 3),
-#    else
-	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer5, Timer::Channel1}, {GPIO::PortH, GPIO::Pin10}, 1),
-	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer5, Timer::Channel2}, {GPIO::PortH, GPIO::Pin11}, 2),
-	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer5, Timer::Channel3}, {GPIO::PortH, GPIO::Pin12}, 3),
-#    endif
-#  endif
+//#  if defined(BOARD_HAS_UI_LED_PWM)
+//#    if defined(BOARD_UI_LED_SWAP_RG)
+//	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer4, Timer::Channel2}, {GPIO::PortB, GPIO::Pin7}, 2),  // 8: red
+//	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer4, Timer::Channel3}, {GPIO::PortD, GPIO::Pin14}, 1), // 9: green
+//	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer4, Timer::Channel4}, {GPIO::PortD, GPIO::Pin15}, 3), // 10: blue
+//#    else
+//	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer4, Timer::Channel2}, {GPIO::PortB, GPIO::Pin7}, 1),  // 8: red
+//	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer4, Timer::Channel3}, {GPIO::PortD, GPIO::Pin14}, 2), // 9: green
+//	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer4, Timer::Channel4}, {GPIO::PortD, GPIO::Pin15}, 3), // 10: blue
+//#    endif
+//#  endif
 #  if defined(BOARD_HAS_LED_PWM) && !defined(BOARD_HAS_CONTROL_STATUS_LEDS)
-	initIOTimerChannelControlLED(led_pwm_timers, {Timer::Timer3, Timer::Channel4}, {GPIO::PortB, GPIO::Pin1}, 4),
-	initIOTimerChannelControlLED(led_pwm_timers, {Timer::Timer3, Timer::Channel1}, {GPIO::PortC, GPIO::Pin6}, 1),
-	initIOTimerChannelControlLED(led_pwm_timers, {Timer::Timer3, Timer::Channel2}, {GPIO::PortC, GPIO::Pin7}, 2),
+	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer4, Timer::Channel2}, {GPIO::PortB, GPIO::Pin7}, 1),  // 8: red
+	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer4, Timer::Channel3}, {GPIO::PortD, GPIO::Pin14}, 2), // 9: green
+	initIOTimerChannelUILED(led_pwm_timers, {Timer::Timer4, Timer::Channel4}, {GPIO::PortD, GPIO::Pin15}, 3), // 10: blue
 #  endif
 };
 #endif // BOARD_HAS_LED_PWM || BOARD_HAS_UI_LED_PWM
